@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/LiterallyFabian/row-counter/issues"
   },
-  "homepage": "https://github.com/LiterallyFabian/row-counter#readme"
+  "homepage": "https://github.com/LiterallyFabian/row-counter#readme",
+  "dependencies": {
+    "minimist": "^1.2.5"
+  }
 }
