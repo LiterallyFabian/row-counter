@@ -3,7 +3,7 @@ const args = require('minimist')(process.argv.slice(2));
 
 let extension = args.e || args.extension || 'js';
 let path = args.p || args.path || '.';
-let recursive = args.r || args.recursive || true;
+let recursive = args.r || args.recursive || false;
 
 printFileData();
 
