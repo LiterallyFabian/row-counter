@@ -1,7 +1,6 @@
 # row-counter
     
 Node script to count total lines of code in a directory.
-![Demo](https://i.imgur.com/E1VrKKB.png)
 
 ## Usage
 
