@@ -14,21 +14,38 @@ function printFileData() {
         return b.lines - a.lines;
     });
 
+    let paddingLength = data.longestFile.length + 2 - path.length;
+
     data.fileData.forEach(file => {
-        console.log(`${file.file.replace(path, '').replace(/^[\/|\\|]/g, "")}: ${file.lines}`);
+        console.log(
+            "\x1b[33m", // yellow
+            `${file.file.replace(path, '').replace(/^[\/|\\|]/g, "")}`.padEnd(paddingLength),
+            "\x1b[0m", // reset
+            `${file.lines}`); // toString to force color
     });
 
-    console.log(`Total lines: ${data.totalLines}`);
+    console.log(
+        "\n\x1b[33m", // yellow
+        `Total lines`.padEnd(paddingLength),
+        "\x1b[0m", // reset
+        `${data.totalLines}`);
 }
 
 function countAllLinesInDir() {
     let files = getFiles(path, recursive);
     let totalLines = 0;
     let fileData = [];
+    let currentLongestFile = '';
+
     files.forEach(file => {
         if (file.endsWith('.' + extension)) {
             let lines = countLinesInFile(file);
             totalLines += lines;
+
+            if(file.length > currentLongestFile.length) {
+                currentLongestFile = file;
+            }
+
             fileData.push({
                 file: file,
                 lines: lines
@@ -38,7 +55,8 @@ function countAllLinesInDir() {
 
     return {
         totalLines: totalLines,
-        fileData: fileData
+        fileData: fileData,
+        longestFile: currentLongestFile
     };
 }
 
