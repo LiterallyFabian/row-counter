@@ -17,5 +17,4 @@ $ node index.js
 - `--path`: Specify the path to the directory to count. Default: `.`
 
 ### To Do
-- Multi-extension support
 - Exclude files or directories
