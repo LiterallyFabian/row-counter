@@ -3,7 +3,7 @@ const args = require('minimist')(process.argv.slice(2));
 
 //#region Command line arguments
 // Extensions to count
-let extensions = args.ext || args.extensions || `js,jsx,ts,tsx,json,md,yml,yaml,css,scss,less,html,htm,xml,txt,mdx`;
+let extensions = args.e || args.extensions || `js,jsx,ts,tsx,json,md,yml,yaml,css,scss,less,html,htm,xml,txt,mdx`;
 extensions = extensions.split(',');
 
 // Path to directory to count
