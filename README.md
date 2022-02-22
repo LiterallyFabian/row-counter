@@ -12,9 +12,7 @@ $ node index.js
 ```
 
 #### Flags 
-- `--extensions`: Specify the extension of the files to count, separated by commas. Defaults to `js,jsx,ts,tsx,json,md,yml,yaml,css,scss,less,html,htm,xml,txt,mdx`.
-- `--recursive`: Count files recursively. Default: `false`
-- `--path`: Specify the path to the directory to count. Default: `.`
-
-### To Do
-- Exclude files or directories
+- `--extensions` (`e`): Specify the extension of the files to count, separated by commas. Default: `js,jsx,ts,tsx,json,md,yml,yaml,css,scss,less,html,htm,xml,txt,mdx`.
+- `--recursive` (`r`): Count files recursively. Default: `false`
+- `--path` (`p`): Specify the path to the directory to count. Default: `.`
+- `--ignore` (`i`): Specify directory names to exclude from the count, separated by commas. Default: `node_modules`

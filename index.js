@@ -3,7 +3,7 @@ const args = require('minimist')(process.argv.slice(2));
 
 //#region Command line arguments
 // Extensions to count
-let extensions = args.e || args.extensions || `js,jsx,ts,tsx,json,md,yml,yaml,css,scss,less,html,htm,xml,txt,mdx`;
+let extensions = args.ext || args.extensions || `js,jsx,ts,tsx,json,md,yml,yaml,css,scss,less,html,htm,xml,txt,mdx`;
 extensions = extensions.split(',');
 
 // Path to directory to count
@@ -11,8 +11,11 @@ let path = args.p || args.path || '.';
 
 // Recursive flag
 let recursive = args.r || args.recursive || false;
-
 recursive = recursive === 'true' || recursive === true;
+
+// Directories to ignore
+let excludedDirs = args.i || args.ignore || 'node_modules';
+excludedDirs = excludedDirs.split(',');
 //#endregion
 
 printFileData();
@@ -77,12 +80,14 @@ function getFiles(dir, recursive) {
     let result = [];
     files.forEach(file => {
         let filePath = dir + '/' + file;
-        if (fs.statSync(filePath).isDirectory()) {
-            if (recursive) {
-                result = result.concat(getFiles(filePath, recursive));
+        if (!excludedDirs.includes(file)) {
+            if (fs.statSync(filePath).isDirectory()) {
+                if (recursive) {
+                    result = result.concat(getFiles(filePath, recursive));
+                }
+            } else {
+                result.push(filePath);
             }
-        } else {
-            result.push(filePath);
         }
     });
     return result;
