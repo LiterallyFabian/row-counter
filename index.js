@@ -11,6 +11,8 @@ let path = args.p || args.path || '.';
 
 // Recursive flag
 let recursive = args.r || args.recursive || false;
+
+recursive = recursive === 'true' || recursive === true;
 //#endregion
 
 printFileData();
@@ -51,7 +53,7 @@ function countAllLinesInDir() {
             let lines = countLinesInFile(file);
             totalLines += lines;
 
-            if(file.length > currentLongestFile.length) {
+            if (file.length > currentLongestFile.length) {
                 currentLongestFile = file;
             }
 
