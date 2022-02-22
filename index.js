@@ -1,9 +1,17 @@
 const fs = require('fs');
 const args = require('minimist')(process.argv.slice(2));
 
-let extension = args.e || args.extension || 'js';
+//#region Command line arguments
+// Extensions to count
+let extensions = args.e || args.extensions || `js,jsx,ts,tsx,json,md,yml,yaml,css,scss,less,html,htm,xml,txt,mdx`;
+extensions = extensions.split(',');
+
+// Path to directory to count
 let path = args.p || args.path || '.';
+
+// Recursive flag
 let recursive = args.r || args.recursive || false;
+//#endregion
 
 printFileData();
 
@@ -38,7 +46,8 @@ function countAllLinesInDir() {
     let currentLongestFile = '';
 
     files.forEach(file => {
-        if (file.endsWith('.' + extension)) {
+        let extension = file.split('.').pop();
+        if (extensions.includes(extension)) {
             let lines = countLinesInFile(file);
             totalLines += lines;
 
